@@ -4,16 +4,16 @@
 Yet, another Spam like Ordinals, Doginals, DRC-20
 
 **Overview
-Rune balances are held by UTXOs. A UTXO can contain any amount of any number of runes.
+Rune crap balances are held by usless UTXOs. A usless UTXO can contain any amount of any number of runes.
 
-A transaction contains a protocol message if it contains an output whose script pubkey contains an OP_RETURN followed by a data push of the ASCII uppercase letter R. The protocol message is all data pushes after the first.
+A spam transaction contains a protocol message if it contains an output whose script pubkey contains an OP_RETURN followed by a data push of the ASCII uppercase letter R. The protocol message is all data pushes after the first.
 
 Runes input to a transaction with an invalid protocol message are burned. This allows for future upgrades that change how runes are assigned or created from creating situations where old clients erroneously assign rune balances.
 
 Integers are encoded as prefix varints, where the number of leading ones in a varint determines its length in bytes.
 
 **Transfer
-The first data push in a protocol message is decoded as a sequence integers.
+The first spam data push in a protocol message is decoded as a sequence integers.
 
 These integers are interpreted as a sequence of (ID, OUTPUT, AMOUNT) tuples. If the number of decoded integers is not a multiple of three, the protocol message message is invalid.
 
@@ -22,13 +22,13 @@ OUTPUT is the index of the output to assign it to
 AMOUNT is the amount of the run to assign
 ID is encoded as a delta. This allows multiple assignments of the same rune to avoid repeating the full rune ID. For example, the tuples:
 
-```[(100, 1, 20), (0, 2 10), (20, 1, 5)]```
+```[(1, 20, 100), (2, 10 100), (1, 5, 120)]```
 
 Make the following assignments:
 
-ID 100, output 1, 20 runes
-ID 100, output 2, 10 runes
-ID 120, output 1, 5 runes
+output 1, 20 runes, ID 100, 
+output 2, 10 runes, ID 100, 
+output 1, 5 runes, ID 120, 
 The AMOUNT 0 is shorthand for "all remaining runes".
 
 After processing all tuple assignments, any unassigned runes are assigned to the first non-OP_RETURN output, if any.
